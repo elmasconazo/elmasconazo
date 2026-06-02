@@ -11,81 +11,76 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --red: #D72638; --red-dark: #A01C27;
-    --white: #F8F8F8; --black: #0D0D0D;
-    --gray: #1A1A1A; --gray-mid: #2A2A2A; --gray-light: #888;
+    --blue: #1A8FFF; --blue-dark: #0066CC; --blue-glow: #4AABFF;
+    --white: #FFFFFF; --off-white: #F0F4FF;
+    --black: #080C14; --gray: #0D1420; --gray-mid: #1A2333; --gray-light: #6B7FA3;
     --font-display: 'Bebas Neue', sans-serif;
     --font-body: 'Inter', sans-serif;
   }
   html { scroll-behavior: smooth; }
   body { background: var(--black); color: var(--white); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(13,13,13,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #1f1f1f; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(8,12,20,0.93); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26,143,255,0.15); }
   .nav-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 2px; color: var(--white); text-decoration: none; }
-  .nav-logo span { color: var(--red); }
+  .nav-logo span { color: var(--blue); }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
-  .nav-ig { background: var(--red) !important; color: var(--white) !important; padding: 0.4rem 1rem; border-radius: 2px; }
-  .nav-ig:hover { background: var(--red-dark) !important; }
+  .nav-ig { background: var(--blue) !important; color: var(--white) !important; padding: 0.4rem 1rem; border-radius: 2px; }
+  .nav-ig:hover { background: var(--blue-dark) !important; }
 
-  /* HERO */
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
-  .hero-bg-number { position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: 28vw; color: #141414; line-height: 1; user-select: none; pointer-events: none; }
+  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,143,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,143,255,0.04) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
+  .hero-glow { position: absolute; top: 20%; left: 60%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(26,143,255,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-bg-number { position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: 28vw; color: rgba(26,143,255,0.04); line-height: 1; user-select: none; pointer-events: none; }
   .hero-content { position: relative; z-index: 2; max-width: 700px; }
-  .hero-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); border: 1px solid var(--red); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.5rem; }
+  .hero-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); border: 1px solid rgba(26,143,255,0.4); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.5rem; background: rgba(26,143,255,0.06); }
   .hero-title { font-family: var(--font-display); font-size: clamp(4rem, 12vw, 9rem); line-height: 0.9; letter-spacing: 3px; color: var(--white); margin-bottom: 0.5rem; }
-  .hero-title .accent { color: var(--red); }
+  .hero-title .accent { color: var(--blue); }
   .hero-sub { font-size: 1rem; color: var(--gray-light); font-weight: 300; margin-bottom: 2.5rem; max-width: 420px; line-height: 1.7; }
   .hero-host { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
-  .host-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--red-dark); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+  .host-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--blue-dark); border: 2px solid var(--blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
   .host-info { font-size: 0.78rem; color: var(--gray-light); }
   .host-info strong { color: var(--white); display: block; font-size: 0.9rem; margin-bottom: 2px; }
   .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--red); color: var(--white); border: none; padding: 0.9rem 2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
-  .btn-primary:hover { background: var(--red-dark); }
-  .btn-outline { background: transparent; color: var(--white); border: 1px solid #333; padding: 0.9rem 2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s; }
-  .btn-outline:hover { border-color: var(--white); }
-  .freq-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 2px; padding: 0.5rem 1rem; font-size: 0.72rem; color: var(--gray-light); letter-spacing: 1px; margin-top: 2rem; }
-  .freq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 1.5s ease-in-out infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .btn-primary { background: var(--blue); color: var(--white); border: none; padding: 0.9rem 2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, box-shadow 0.2s; }
+  .btn-primary:hover { background: var(--blue-dark); box-shadow: 0 0 20px rgba(26,143,255,0.4); }
+  .btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.9rem 2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .freq-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(26,143,255,0.08); border: 1px solid rgba(26,143,255,0.2); border-radius: 2px; padding: 0.5rem 1rem; font-size: 0.72rem; color: var(--gray-light); letter-spacing: 1px; margin-top: 2rem; }
+  .freq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
-  /* STATS */
-  .stats-bar { background: var(--red); padding: 1.2rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+  .stats-bar { background: var(--blue); padding: 1.2rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
   .stat-item { text-align: center; }
   .stat-number { font-family: var(--font-display); font-size: 2rem; color: var(--white); letter-spacing: 1px; }
   .stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
 
-  /* SECTIONS */
   section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
-  .section-eyebrow { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; color: var(--red); margin-bottom: 1rem; }
+  .section-eyebrow { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; color: var(--blue); margin-bottom: 1rem; }
   .section-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: 2px; color: var(--white); line-height: 1; margin-bottom: 1.5rem; }
   .section-body { font-size: 1rem; color: var(--gray-light); max-width: 520px; line-height: 1.8; }
-  .divider { width: 48px; height: 2px; background: var(--red); margin: 1.5rem 0; }
+  .divider { width: 48px; height: 2px; background: var(--blue); margin: 1.5rem 0; }
 
-  /* EPISODES */
-  .episodes-section { background: var(--gray); padding: 5rem 2rem; }
+  .episodes-section { background: var(--gray); padding: 5rem 2rem; border-top: 1px solid rgba(26,143,255,0.1); border-bottom: 1px solid rgba(26,143,255,0.1); }
   .episodes-inner { max-width: 960px; margin: 0 auto; }
   .episode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .episode-card { background: #111; border: 1px solid #222; border-radius: 4px; padding: 1.5rem; transition: border-color 0.2s; }
-  .episode-card:hover { border-color: var(--red); }
-  .ep-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--red); margin-bottom: 0.75rem; }
+  .episode-card { background: var(--gray-mid); border: 1px solid rgba(26,143,255,0.12); border-radius: 4px; padding: 1.5rem; transition: border-color 0.2s, box-shadow 0.2s; }
+  .episode-card:hover { border-color: var(--blue); box-shadow: 0 0 24px rgba(26,143,255,0.1); }
+  .ep-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--blue); margin-bottom: 0.75rem; }
   .ep-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--white); letter-spacing: 1px; margin-bottom: 0.75rem; line-height: 1.2; }
   .ep-desc { font-size: 0.82rem; color: var(--gray-light); margin-bottom: 1.25rem; line-height: 1.6; }
   .spotify-embed iframe { display: block; border-radius: 2px; }
 
-  /* FOOTER */
-  footer { background: #060606; border-top: 1px solid #1a1a1a; padding: 3rem 2rem; text-align: center; }
+  footer { background: #04070E; border-top: 1px solid rgba(26,143,255,0.1); padding: 3rem 2rem; text-align: center; }
   .footer-logo { font-family: var(--font-display); font-size: 2.5rem; letter-spacing: 4px; color: var(--white); margin-bottom: 0.5rem; }
-  .footer-logo span { color: var(--red); }
+  .footer-logo span { color: var(--blue); }
   .footer-sub { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gray-light); margin-bottom: 1.5rem; }
   .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
   .footer-links a { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-light); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy { font-size: 0.7rem; color: #444; }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy { font-size: 0.7rem; color: #2a3a55; }
 
-  /* MOBILE */
   @media (max-width: 600px) {
     nav { padding: 0.8rem 1rem; }
     .nav-links { gap: 1rem; }
@@ -109,14 +104,14 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="inicio">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
   <div class="hero-bg-number">10</div>
   <div class="hero-content">
     <div class="hero-tag">Podcast Deportivo · Nacional &amp; Internacional</div>
     <h1 class="hero-title">EL<br><span class="accent">MASCONAZO</span></h1>
     <p class="hero-sub">Análisis, comentarios y noticias del mundo del deporte. Fútbol y más, desde El Salvador para el mundo.</p>
-
     <div class="hero-host">
       <div class="host-avatar">PL</div>
       <div class="host-info">
@@ -124,12 +119,10 @@
         Conductor del programa
       </div>
     </div>
-
     <div class="hero-ctas">
-      <a href="https://open.spotify.com/show/" target="_blank" class="btn-primary">Escuchar en Spotify</a>
+      <a href="https://open.spotify.com/show/1sErZilo3wxz9Rpt1BBMdX?si=dcadeeaaa2984f3c" target="_blank" class="btn-primary">Escuchar en Spotify</a>
       <a href="#episodios" class="btn-outline">Ver Episodios</a>
     </div>
-
     <div class="freq-badge">
       <span class="freq-dot"></span>
       Nuevos episodios cada viernes
@@ -137,7 +130,6 @@
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-number">2+</div><div class="stat-label">Temporadas</div></div>
   <div class="stat-item"><div class="stat-number">SV</div><div class="stat-label">El Salvador</div></div>
@@ -145,7 +137,6 @@
   <div class="stat-item"><div class="stat-number">1</div><div class="stat-label">Conductor</div></div>
 </div>
 
-<!-- ABOUT -->
 <section id="info">
   <p class="section-eyebrow">Sobre el programa</p>
   <h2 class="section-title">QUIÉNES<br>SOMOS</h2>
@@ -153,7 +144,6 @@
   <p class="section-body">El Masconazo es el podcast deportivo semanal conducido por Paolo López, donde se analiza la jornada, se entrevista a expertos y se comparte lo más destacado del deporte nacional e internacional. Disponible en Spotify y todas las plataformas de audio.</p>
 </section>
 
-<!-- EPISODES -->
 <div class="episodes-section" id="episodios">
   <div class="episodes-inner">
     <p class="section-eyebrow">Escucha ahora</p>
@@ -180,7 +170,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">EL <span>MASCONAZO</span></div>
   <p class="footer-sub">Podcast Deportivo · Nacional &amp; Internacional</p>
