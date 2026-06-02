@@ -1,193 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="description" content="El Masconazo - Podcast deportivo con análisis y noticias nacionales e internacionales. Conduce Paolo López y José Cubas. Escúchanos cada viernes.">
-<meta name="keywords" content="Podcast deportivo, fútbol, noticias deportivas, El Masconazo, análisis deportivo">
-<meta name="author" content="El Masconazo">
-<title>El Masconazo - Podcast Deportivo Nacional e Internacional</title>
-  <style>
-    :root {
-      --fondo: #0e0e0e;
-      --texto: #f1f1f1;
-      --amarillo: #ffd700;
-      --gris: #1a1a1a;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="El Masconazo - Podcast deportivo con análisis y noticias nacionales e internacionales. Conduce Paolo López. Escúchanos cada viernes."/>
+<meta name="keywords" content="Podcast deportivo, fútbol, noticias deportivas, El Masconazo, análisis deportivo, El Salvador"/>
+<meta name="author" content="El Masconazo"/>
+<title>El Masconazo - Podcast Deportivo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #D72638; --red-dark: #A01C27;
+    --white: #F8F8F8; --black: #0D0D0D;
+    --gray: #1A1A1A; --gray-mid: #2A2A2A; --gray-light: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--fondo);
-      color: var(--texto);
-    }
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(13,13,13,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #1f1f1f; }
+  .nav-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 2px; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-ig { background: var(--red) !important; color: var(--white) !important; padding: 0.4rem 1rem; border-radius: 2px; }
+  .nav-ig:hover { background: var(--red-dark) !important; }
 
-    header {
-      background-color: var(--gris);
-      text-align: center;
-      padding: 2em 1em;
-      position: relative;
-    }
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+  .hero-bg-number { position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: 28vw; color: #141414; line-height: 1; user-select: none; pointer-events: none; }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .hero-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); border: 1px solid var(--red); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.5rem; }
+  .hero-title { font-family: var(--font-display); font-size: clamp(4rem, 12vw, 9rem); line-height: 0.9; letter-spacing: 3px; color: var(--white); margin-bottom: 0.5rem; }
+  .hero-title .accent { color: var(--red); }
+  .hero-sub { font-size: 1rem; color: var(--gray-light); font-weight: 300; margin-bottom: 2.5rem; max-width: 420px; line-height: 1.7; }
+  .hero-host { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
+  .host-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--red-dark); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+  .host-info { font-size: 0.78rem; color: var(--gray-light); }
+  .host-info strong { color: var(--white); display: block; font-size: 0.9rem; margin-bottom: 2px; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--red); color: var(--white); border: none; padding: 0.9rem 2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--red-dark); }
+  .btn-outline { background: transparent; color: var(--white); border: 1px solid #333; padding: 0.9rem 2rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: var(--white); }
+  .freq-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 2px; padding: 0.5rem 1rem; font-size: 0.72rem; color: var(--gray-light); letter-spacing: 1px; margin-top: 2rem; }
+  .freq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: var(--amarillo);
-    }
+  /* STATS */
+  .stats-bar { background: var(--red); padding: 1.2rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-number { font-family: var(--font-display); font-size: 2rem; color: var(--white); letter-spacing: 1px; }
+  .stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
 
-    header p {
-      margin: 0.5em 0 0;
-      font-size: 1.2em;
-    }
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .section-eyebrow { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; color: var(--red); margin-bottom: 1rem; }
+  .section-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: 2px; color: var(--white); line-height: 1; margin-bottom: 1.5rem; }
+  .section-body { font-size: 1rem; color: var(--gray-light); max-width: 520px; line-height: 1.8; }
+  .divider { width: 48px; height: 2px; background: var(--red); margin: 1.5rem 0; }
 
-    .instagram-link {
-      position: absolute;
-      top: 1em;
-      right: 1em;
-      background-color: var(--amarillo);
-      color: #000;
-      padding: 0.5em 1em;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
+  /* EPISODES */
+  .episodes-section { background: var(--gray); padding: 5rem 2rem; }
+  .episodes-inner { max-width: 960px; margin: 0 auto; }
+  .episode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .episode-card { background: #111; border: 1px solid #222; border-radius: 4px; padding: 1.5rem; transition: border-color 0.2s; }
+  .episode-card:hover { border-color: var(--red); }
+  .ep-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--red); margin-bottom: 0.75rem; }
+  .ep-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--white); letter-spacing: 1px; margin-bottom: 0.75rem; line-height: 1.2; }
+  .ep-desc { font-size: 0.82rem; color: var(--gray-light); margin-bottom: 1.25rem; line-height: 1.6; }
+  .spotify-embed iframe { display: block; border-radius: 2px; }
 
-    .instagram-link:hover {
-      background-color: #e6c200;
-    }
+  /* FOOTER */
+  footer { background: #060606; border-top: 1px solid #1a1a1a; padding: 3rem 2rem; text-align: center; }
+  .footer-logo { font-family: var(--font-display); font-size: 2.5rem; letter-spacing: 4px; color: var(--white); margin-bottom: 0.5rem; }
+  .footer-logo span { color: var(--red); }
+  .footer-sub { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gray-light); margin-bottom: 1.5rem; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-light); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy { font-size: 0.7rem; color: #444; }
 
-    nav {
-      background-color: #111;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--texto);
-      padding: 1em;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #222;
-    }
-
-    section {
-      padding: 2em;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      color: var(--amarillo);
-      margin-bottom: 1em;
-      border-bottom: 2px solid var(--amarillo);
-      padding-bottom: 0.3em;
-    }
-
-    .episodio {
-      background-color: #1a1a1a;
-      padding: 1.5em;
-      margin-bottom: 2em;
-      border-left: 5px solid var(--amarillo);
-      box-shadow: 0 2px 5px rgba(255,255,255,0.05);
-    }
-
-    .spotify-player {
-      margin-top: 1em;
-      width: 100%;
-      height: 152px;
-      border: none;
-    }
-
-    .noticia {
-      background-color: #1a1a1a;
-      padding: 1em;
-      margin-bottom: 2em;
-      border-left: 4px solid var(--amarillo);
-      box-shadow: 0 2px 5px rgba(255,255,255,0.05);
-    }
-
-    .noticia img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      margin-top: 1em;
-      border-radius: 8px;
-    }
-
-    footer {
-      background-color: var(--gris);
-      color: var(--texto);
-      text-align: center;
-      padding: 1.5em 0;
-      margin-top: 3em;
-      font-size: 0.9em;
-    }
-  </style>
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 0.8rem 1rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    .hero { padding: 6rem 1.2rem 3rem; }
+    .stats-bar { gap: 2rem; }
+    section { padding: 3rem 1.2rem; }
+    .episodes-section { padding: 3rem 1.2rem; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <a class="instagram-link" href="https://www.instagram.com/elmasconazo_ig?utm_source=ig_web_button_share_sheet&igsh=cmg4N2xyczA3MjJx" target="_blank">Instagram</a>
-    <h1>El Masconazo</h1>
-    <p>Tu canal de noticias deportivas nacionales e internacionales</p>
-  </header>
+<nav>
+  <a href="#inicio" class="nav-logo">El <span>Masconazo</span></a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#episodios">Episodios</a></li>
+    <li><a href="#info">Nosotros</a></li>
+    <li><a href="https://www.instagram.com/elmasconazo_ig" target="_blank" class="nav-ig">Instagram</a></li>
+  </ul>
+</nav>
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#info">Información</a>
-    <a href="#episodios">Episodios</a>
-    <a href="#noticias">Noticias</a>
-  </nav>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-number">10</div>
+  <div class="hero-content">
+    <div class="hero-tag">Podcast Deportivo · Nacional &amp; Internacional</div>
+    <h1 class="hero-title">EL<br><span class="accent">MASCONAZO</span></h1>
+    <p class="hero-sub">Análisis, comentarios y noticias del mundo del deporte. Fútbol y más, desde El Salvador para el mundo.</p>
 
-  <section id="inicio">
-    <h2>Inicio</h2>
-    <p>Bienvenidos a "El Masconazo", tu fuente confiable de análisis, comentarios y noticias deportivas. Aquí hablamos de fútbol y todos los deportes, con enfoque nacional e internacional.</p>
-  </section>
-
-  <section id="info">
-    <h2>Información del Podcast</h2>
-    <p>"El Masconazo" es un podcast deportivo semanal donde analizamos la jornada, entrevistamos a expertos y compartimos las noticias más destacadas del mundo del deporte.</p>
-    <p><strong>Conducen:</strong> Paolo López y José Cubas</p>
-    <p><strong>Frecuencia:</strong> Nuevos episodios cada viernes</p>
-    <p><strong>Disponible en:</strong> Spotify y todas las plataformas de audio</p>
-  </section>
-
-  <section id="episodios">
-    <h2>Episodios Destacados</h2>
-
-    <div class="episodio">
-      <h3>📅 Episodio: Barcelona y sus Promesas</h3>
-      <p>Conversación acerca de las joyas del F.C. Barcelona.</p>
-      <iframe class="spotify-player" 
-        src="https://open.spotify.com/embed/episode/1zbGk7sMkXejfWtNunsSOF?utm_source=generator" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy"></iframe>
+    <div class="hero-host">
+      <div class="host-avatar">PL</div>
+      <div class="host-info">
+        <strong>Paolo López</strong>
+        Conductor del programa
+      </div>
     </div>
 
-    <div class="episodio">
-      <h3>📅 Episodio: Promesa Salvadoreña - Isaac Esquivel</h3>
-      <p>Conversamos con Isaac Esquivel sobre su carrera y futuro.</p>
-      <iframe class="spotify-player" 
-        src="https://open.spotify.com/embed/episode/5EcbM3DmwAZkqM1Vye2oAS?utm_source=generator" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy"></iframe>
+    <div class="hero-ctas">
+      <a href="https://open.spotify.com/show/" target="_blank" class="btn-primary">Escuchar en Spotify</a>
+      <a href="#episodios" class="btn-outline">Ver Episodios</a>
     </div>
 
-  </section>
+    <div class="freq-badge">
+      <span class="freq-dot"></span>
+      Nuevos episodios cada viernes
+    </div>
+  </div>
+</section>
 
-  <section id="noticias">
-    <h2>Noticias & Multimedia</h2>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-number">2+</div><div class="stat-label">Temporadas</div></div>
+  <div class="stat-item"><div class="stat-number">SV</div><div class="stat-label">El Salvador</div></div>
+  <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Deporte</div></div>
+  <div class="stat-item"><div class="stat-number">1</div><div class="stat-label">Conductor</div></div>
+</div>
 
-    
-  </section>
+<!-- ABOUT -->
+<section id="info">
+  <p class="section-eyebrow">Sobre el programa</p>
+  <h2 class="section-title">QUIÉNES<br>SOMOS</h2>
+  <div class="divider"></div>
+  <p class="section-body">El Masconazo es el podcast deportivo semanal conducido por Paolo López, donde se analiza la jornada, se entrevista a expertos y se comparte lo más destacado del deporte nacional e internacional. Disponible en Spotify y todas las plataformas de audio.</p>
+</section>
 
-  <footer>
-    <p>&copy; 2025 El Masconazo - Todos los derechos reservados. | Síguenos en Instagram @elmasconazo_ig</p>
-  </footer>
+<!-- EPISODES -->
+<div class="episodes-section" id="episodios">
+  <div class="episodes-inner">
+    <p class="section-eyebrow">Escucha ahora</p>
+    <h2 class="section-title">EPISODIOS<br>DESTACADOS</h2>
+    <div class="divider"></div>
+    <div class="episode-grid">
+      <div class="episode-card">
+        <p class="ep-tag">Episodio Reciente</p>
+        <h3 class="ep-title">Barcelona y sus Promesas</h3>
+        <p class="ep-desc">Conversación acerca de las joyas del F.C. Barcelona y su cantera.</p>
+        <div class="spotify-embed">
+          <iframe src="https://open.spotify.com/embed/episode/1zbGk7sMkXejfWtNunsSOF?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="episode-card">
+        <p class="ep-tag">Entrevista Especial</p>
+        <h3 class="ep-title">Promesa Salvadoreña: Isaac Esquivel</h3>
+        <p class="ep-desc">Conversación con Isaac Esquivel sobre su carrera y su futuro en el fútbol.</p>
+        <div class="spotify-embed">
+          <iframe src="https://open.spotify.com/embed/episode/5EcbM3DmwAZkqM1Vye2oAS?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EL <span>MASCONAZO</span></div>
+  <p class="footer-sub">Podcast Deportivo · Nacional &amp; Internacional</p>
+  <ul class="footer-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#episodios">Episodios</a></li>
+    <li><a href="#info">Nosotros</a></li>
+    <li><a href="https://www.instagram.com/elmasconazo_ig" target="_blank">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 El Masconazo · Todos los derechos reservados</p>
+</footer>
 
 </body>
 </html>
