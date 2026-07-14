@@ -206,18 +206,84 @@
       radial-gradient(ellipse 1100px 700px at 50% -10%, rgba(72,132,197,0.20), transparent 60%),
       linear-gradient(180deg,#05070A 0%, #0A0D13 60%, #07090D 100%);
   }
-  .hero__field{position:absolute;inset:0;z-index:0;opacity:.5;}
-  .hero__field svg{width:100%;height:100%;}
-  .streak{
-    position:absolute;
-    height:1px;
-    background:linear-gradient(90deg,transparent,rgba(143,193,242,0.5),transparent);
-    transform:rotate(-8deg);
-    animation:streakMove linear infinite;
+  .hero__field{
+    position:absolute;inset:0;z-index:0;opacity:.62;
+    pointer-events:none;overflow:hidden;
   }
-  @keyframes streakMove{
-    0%{transform:translateX(-30%) rotate(-8deg);}
-    100%{transform:translateX(30%) rotate(-8deg);}
+  .hero__layer,
+  .hero__field svg{
+    position:absolute;inset:0;width:100%;height:100%;
+  }
+  .hero__sports-silhouettes{
+    opacity:.72;
+  }
+  .pitch-line{
+    fill:none;
+    stroke:rgba(143,193,242,0.18);
+    stroke-width:1.45;
+  }
+  .f1-body{
+    fill:rgba(72,132,197,0.08);
+    stroke:rgba(143,193,242,0.20);
+    stroke-width:1.45;
+    stroke-linejoin:round;
+  }
+  .f1-detail{
+    fill:none;
+    stroke:rgba(143,193,242,0.17);
+    stroke-width:1.25;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .f1-wheel{
+    fill:rgba(143,193,242,0.10);
+    stroke:rgba(143,193,242,0.18);
+    stroke-width:1.2;
+  }
+
+  /* Ambient sports particles: subtle, decorative and kept away from the silhouettes */
+  .hero__ambient{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .ambient-dot{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:rgba(143,193,242,0.62);
+    box-shadow:0 0 10px rgba(143,193,242,0.32);
+    animation:ambientFloat 9s ease-in-out infinite;
+  }
+  .ambient-dot--1{left:5%;top:20%;animation-delay:-1s;}
+  .ambient-dot--2{left:8%;top:72%;width:4px;height:4px;animation-delay:-5s;}
+  .ambient-dot--3{left:46%;top:13%;width:4px;height:4px;animation-delay:-3s;}
+  .ambient-dot--4{left:50%;top:80%;animation-delay:-7s;}
+  .ambient-dot--5{right:6%;top:18%;width:4px;height:4px;animation-delay:-2s;}
+  .ambient-dot--6{right:7%;top:74%;animation-delay:-6s;}
+  .ambient-dot--7{left:28%;top:8%;width:3px;height:3px;animation-delay:-4s;}
+  .ambient-dot--8{right:30%;top:88%;width:3px;height:3px;animation-delay:-8s;}
+
+  .ambient-ring{
+    position:absolute;
+    width:44px;
+    height:44px;
+    border:1px solid rgba(143,193,242,0.12);
+    border-radius:50%;
+    animation:ambientRing 7s ease-in-out infinite;
+  }
+  .ambient-ring--1{left:2.5%;top:44%;animation-delay:-1s;}
+  .ambient-ring--2{right:2.5%;top:46%;animation-delay:-4s;}
+
+  @keyframes ambientFloat{
+    0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.28;}
+    50%{transform:translate3d(0,-14px,0) scale(1.15);opacity:.72;}
+  }
+  @keyframes ambientRing{
+    0%,100%{transform:scale(.8);opacity:.12;}
+    50%{transform:scale(1.2);opacity:.34;}
   }
   .hero__content{position:relative;z-index:2;text-align:center;}
   .hero__logo{
@@ -354,9 +420,8 @@
   .programa{padding:150px 0 120px;background:var(--ink);}
   .programa__head{max-width:760px;}
   .programa__grid{
-    margin-top:70px;
-    display:grid;grid-template-columns:1fr 1fr;gap:60px;
-    align-items:start;
+    margin-top:52px;
+    max-width:820px;
   }
   .programa__body p{color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:18px;}
   .programa__body strong{color:var(--paper);font-weight:600;}
@@ -367,23 +432,9 @@
     border:1px solid var(--line);
     padding:8px 14px;border-radius:100px;
   }
-  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .pillar{
-    padding:22px 20px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:14px;
-    transition:all .3s var(--ease);
-  }
-  .pillar:hover{border-color:var(--blue-light);transform:translateY(-4px);background:var(--panel-2);}
-  .pillar svg{width:24px;height:24px;color:var(--blue-light);margin-bottom:14px;}
-  .pillar h4{font-family:var(--font-display);font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:.01em;color:var(--paper);}
-
   @media (max-width:900px){
-    .programa__grid{grid-template-columns:1fr;gap:40px;}
-    .pillars{grid-template-columns:1fr 1fr;}
+    .programa__grid{margin-top:40px;}
   }
-  @media (max-width:540px){ .pillars{grid-template-columns:1fr;} }
 
   /* ============================================================
      PAOLO
@@ -567,18 +618,6 @@
   .mv-card:hover::before{width:100%;}
   @media (max-width:820px){ .mv-grid{grid-template-columns:1fr;} }
 
-  .obj-strip{
-    margin-top:56px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;
-  }
-  .obj-item{
-    text-align:center;padding:24px 12px;border:1px solid var(--line);border-radius:14px;
-    background:rgba(18,21,27,0.4);transition:all .3s var(--ease);
-  }
-  .obj-item:hover{border-color:var(--blue-light);transform:translateY(-4px);background:var(--panel);}
-  .obj-item__n{font-family:var(--font-display);font-weight:800;font-size:26px;color:var(--blue-light);display:block;margin-bottom:8px;}
-  .obj-item span:last-child{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--paper);display:block;line-height:1.4;}
-  @media (max-width:900px){ .obj-strip{grid-template-columns:repeat(3,1fr);} }
-  @media (max-width:520px){ .obj-strip{grid-template-columns:repeat(2,1fr);} }
 
   /* ============================================================
      PROGRAMACIÓN (ON AIR)
@@ -704,10 +743,80 @@
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero__field" aria-hidden="true">
-    <div class="streak" style="top:18%;width:340px;animation-duration:9s;"></div>
-    <div class="streak" style="top:34%;width:220px;animation-duration:7s;animation-delay:-2s;"></div>
-    <div class="streak" style="top:58%;width:280px;animation-duration:11s;animation-delay:-4s;"></div>
-    <div class="streak" style="top:74%;width:200px;animation-duration:8s;animation-delay:-1s;"></div>
+    <svg class="hero__sports-silhouettes hero__layer" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+      <!-- Silueta de cancha -->
+      <g>
+        <rect class="pitch-line" x="90" y="205" width="535" height="305" rx="18"/>
+        <line class="pitch-line" x1="357.5" y1="205" x2="357.5" y2="510"/>
+        <circle class="pitch-line" cx="357.5" cy="357.5" r="55"/>
+        <circle class="pitch-line" cx="357.5" cy="357.5" r="3.8"/>
+        <rect class="pitch-line" x="90" y="266" width="88" height="183" rx="7"/>
+        <rect class="pitch-line" x="537" y="266" width="88" height="183" rx="7"/>
+        <rect class="pitch-line" x="90" y="309" width="34" height="97" rx="4"/>
+        <rect class="pitch-line" x="591" y="309" width="34" height="97" rx="4"/>
+        <path class="pitch-line" d="M178 313 A54 54 0 0 1 178 402"/>
+        <path class="pitch-line" d="M537 313 A54 54 0 0 0 537 402"/>
+      </g>
+
+      <!-- Silueta superior de carro de Fórmula 1 -->
+      <g transform="translate(838 178)">
+        <!-- alerón trasero -->
+        <rect class="f1-body" x="83" y="20" width="226" height="28" rx="7"/>
+        <rect class="f1-detail" x="111" y="48" width="170" height="18" rx="7"/>
+
+        <!-- ruedas traseras -->
+        <rect class="f1-wheel" x="36" y="74" width="66" height="118" rx="22"/>
+        <rect class="f1-wheel" x="290" y="74" width="66" height="118" rx="22"/>
+
+        <!-- cuerpo principal -->
+        <path class="f1-body" d="M196 52
+          C172 54 156 70 151 94
+          L137 190
+          C133 219 142 247 158 267
+          L176 289
+          L184 408
+          L208 408
+          L216 289
+          L234 267
+          C250 247 259 219 255 190
+          L241 94
+          C236 70 220 54 196 52 Z"/>
+
+        <!-- pontones -->
+        <path class="f1-body" d="M151 143 L106 176 L107 245 L158 260"/>
+        <path class="f1-body" d="M241 143 L286 176 L285 245 L234 260"/>
+
+        <!-- cockpit -->
+        <path class="f1-detail" d="M196 106
+          C176 108 166 123 167 147
+          C168 174 178 195 196 208
+          C214 195 224 174 225 147
+          C226 123 216 108 196 106 Z"/>
+        <path class="f1-detail" d="M196 208 L196 290"/>
+        <path class="f1-detail" d="M169 250 L223 250"/>
+
+        <!-- ruedas delanteras -->
+        <rect class="f1-wheel" x="72" y="278" width="56" height="105" rx="19"/>
+        <rect class="f1-wheel" x="264" y="278" width="56" height="105" rx="19"/>
+
+        <!-- nariz y alerón delantero -->
+        <path class="f1-body" d="M184 407 L168 472 L224 472 L208 407 Z"/>
+        <rect class="f1-body" x="72" y="463" width="248" height="26" rx="7"/>
+        <path class="f1-detail" d="M103 452 L103 489 M289 452 L289 489"/>
+      </g>
+    </svg>
+    <div class="hero__ambient">
+      <span class="ambient-dot ambient-dot--1"></span>
+      <span class="ambient-dot ambient-dot--2"></span>
+      <span class="ambient-dot ambient-dot--3"></span>
+      <span class="ambient-dot ambient-dot--4"></span>
+      <span class="ambient-dot ambient-dot--5"></span>
+      <span class="ambient-dot ambient-dot--6"></span>
+      <span class="ambient-dot ambient-dot--7"></span>
+      <span class="ambient-dot ambient-dot--8"></span>
+      <span class="ambient-ring ambient-ring--1"></span>
+      <span class="ambient-ring ambient-ring--2"></span>
+    </div>
   </div>
 
   <div class="hero__content container">
@@ -758,41 +867,6 @@
           <span>Pasión</span><span>Autoridad</span><span>Credibilidad</span><span>Velocidad</span><span>Análisis</span><span>Comunidad</span><span>Innovación</span>
         </div>
       </div>
-
-      <div class="pillars reveal">
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3v6l5 3-2 6-3-3-3 3-2-6 5-3V3"/></svg>
-          <h4>Fútbol Nacional</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
-          <h4>Fútbol Internacional</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 3v18M4 4h13l-2.5 3L17 10H4"/></svg>
-          <h4>Fórmula 1</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l3-3 4 4 3-6 5 7"/><circle cx="19" cy="6" r="2"/></svg>
-          <h4>Actualidad</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 15l3-4 2 2 3-5"/></svg>
-          <h4>Análisis &amp; Opinión</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg>
-          <h4>Entrevistas</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="14" height="11" rx="2"/><path d="M17 10l4-2v9l-4-2"/></svg>
-          <h4>Coberturas Especiales</h4>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h9a3 3 0 010 6H8l-4 4V5z"/><path d="M20 19h-9a3 3 0 010-6h5l4-4v10z"/></svg>
-          <h4>Debates</h4>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -817,15 +891,6 @@
         <h3>Crecer sin fronteras</h3>
         <p>Convertir a El Masconazo en uno de los medios deportivos digitales más influyentes de El Salvador y Latinoamérica, reconocido por su credibilidad, innovación, cercanía con la audiencia y cobertura integral del deporte.</p>
       </div>
-    </div>
-
-    <div class="obj-strip reveal">
-      <div class="obj-item"><span class="obj-item__n">01</span><span>Informar</span></div>
-      <div class="obj-item"><span class="obj-item__n">02</span><span>Analizar</span></div>
-      <div class="obj-item"><span class="obj-item__n">03</span><span>Entretener</span></div>
-      <div class="obj-item"><span class="obj-item__n">04</span><span>Generar opinión</span></div>
-      <div class="obj-item"><span class="obj-item__n">05</span><span>Crear comunidad</span></div>
-      <div class="obj-item"><span class="obj-item__n">06</span><span>Fortalecer la cultura deportiva</span></div>
     </div>
   </div>
 </section>
@@ -1048,7 +1113,7 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <img src="data:image/png;base64,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" alt="El Masconazo">
-
+        <span>Periodismo deportivo digital</span>
       </div>
       <nav class="footer__links">
         <a href="#inicio">Inicio</a>
@@ -1143,18 +1208,6 @@
   window.addEventListener('scroll', updatePulse, {passive:true});
   window.addEventListener('resize', updatePulse);
 
-  /* Subtle parallax on hero streaks (desktop, no reduced motion) */
-  if(!reduceMotion && window.innerWidth > 900){
-    var hero = document.querySelector('.hero');
-    var field = document.querySelector('.hero__field');
-    if(hero && field){
-      hero.addEventListener('mousemove', function(e){
-        var x = (e.clientX / window.innerWidth - 0.5) * 14;
-        var y = (e.clientY / window.innerHeight - 0.5) * 14;
-        field.style.transform = 'translate('+x+'px,'+y+'px)';
-      });
-    }
-  }
 })();
 </script>
 </body>
