@@ -215,30 +215,102 @@
     position:absolute;inset:0;width:100%;height:100%;
   }
   .hero__sports-silhouettes{
-    opacity:.72;
+    opacity:.76;
+  }
+  .pitch-group{
+    transform-box:fill-box;
+    transform-origin:center;
+    animation:pitchBreathe 8s ease-in-out infinite;
   }
   .pitch-line{
     fill:none;
-    stroke:rgba(143,193,242,0.18);
+    stroke:rgba(143,193,242,0.20);
     stroke-width:1.45;
+    stroke-dasharray:7 5;
+    animation:pitchFlow 18s linear infinite;
+  }
+  .pitch-scan{
+    fill:url(#pitchScanGradient);
+    opacity:.28;
+    animation:pitchScan 7.5s ease-in-out infinite;
+  }
+  .pitch-ball{
+    fill:#8FC1F2;
+    opacity:.88;
+    filter:drop-shadow(0 0 8px rgba(143,193,242,0.58));
+    animation:pitchBallMove 9s var(--ease) infinite;
+  }
+
+  .f1-car-group{
+    transform-box:fill-box;
+    transform-origin:center;
   }
   .f1-body{
     fill:rgba(72,132,197,0.08);
-    stroke:rgba(143,193,242,0.20);
+    stroke:rgba(143,193,242,0.22);
     stroke-width:1.45;
     stroke-linejoin:round;
+    animation:f1BodyGlow 5.5s ease-in-out infinite;
   }
   .f1-detail{
     fill:none;
-    stroke:rgba(143,193,242,0.17);
+    stroke:rgba(143,193,242,0.19);
     stroke-width:1.25;
     stroke-linecap:round;
     stroke-linejoin:round;
   }
   .f1-wheel{
     fill:rgba(143,193,242,0.10);
-    stroke:rgba(143,193,242,0.18);
+    stroke:rgba(143,193,242,0.20);
     stroke-width:1.2;
+  }
+  .f1-speedline{
+    fill:none;
+    stroke:rgba(143,193,242,0.26);
+    stroke-width:1.35;
+    stroke-linecap:round;
+    stroke-dasharray:14 16;
+    animation:f1SpeedFlow 6.5s linear infinite;
+  }
+  .f1-light{
+    fill:#8FC1F2;
+    opacity:.45;
+    filter:drop-shadow(0 0 7px rgba(143,193,242,0.5));
+    animation:f1LightBlink 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pitchBreathe{
+    0%,100%{transform:translateY(0);opacity:.72;}
+    50%{transform:translateY(-4px);opacity:.92;}
+  }
+  @keyframes pitchFlow{
+    from{stroke-dashoffset:0;}
+    to{stroke-dashoffset:-180;}
+  }
+  @keyframes pitchScan{
+    0%,100%{transform:translateX(-120px);opacity:.08;}
+    45%,55%{opacity:.32;}
+    50%{transform:translateX(520px);}
+  }
+  @keyframes pitchBallMove{
+    0%,100%{transform:translate(0,0) scale(.85);opacity:.45;}
+    18%{transform:translate(112px,-58px) scale(1);opacity:1;}
+    40%{transform:translate(226px,12px) scale(.9);opacity:.78;}
+    63%{transform:translate(340px,-72px) scale(1.08);opacity:1;}
+    82%{transform:translate(438px,-4px) scale(.92);opacity:.7;}
+  }
+  @keyframes f1BodyGlow{
+    0%,100%{stroke:rgba(143,193,242,0.19);}
+    50%{stroke:rgba(143,193,242,0.32);}
+  }
+  @keyframes f1SpeedFlow{
+    from{stroke-dashoffset:0;opacity:.12;}
+    40%,70%{opacity:.42;}
+    to{stroke-dashoffset:-180;opacity:.12;}
+  }
+  @keyframes f1LightBlink{
+    0%,100%{opacity:.22;transform:scale(.82);}
+    50%{opacity:.9;transform:scale(1.2);}
   }
 
   /* Ambient sports particles: subtle, decorative and kept away from the silhouettes */
@@ -257,14 +329,18 @@
     box-shadow:0 0 10px rgba(143,193,242,0.32);
     animation:ambientFloat 9s ease-in-out infinite;
   }
-  .ambient-dot--1{left:5%;top:20%;animation-delay:-1s;}
-  .ambient-dot--2{left:8%;top:72%;width:4px;height:4px;animation-delay:-5s;}
-  .ambient-dot--3{left:46%;top:13%;width:4px;height:4px;animation-delay:-3s;}
-  .ambient-dot--4{left:50%;top:80%;animation-delay:-7s;}
-  .ambient-dot--5{right:6%;top:18%;width:4px;height:4px;animation-delay:-2s;}
-  .ambient-dot--6{right:7%;top:74%;animation-delay:-6s;}
-  .ambient-dot--7{left:28%;top:8%;width:3px;height:3px;animation-delay:-4s;}
-  .ambient-dot--8{right:30%;top:88%;width:3px;height:3px;animation-delay:-8s;}
+  .ambient-dot--1{left:4%;top:18%;animation-delay:-1s;}
+  .ambient-dot--2{left:7%;top:74%;width:4px;height:4px;animation-delay:-5s;}
+  .ambient-dot--3{left:46%;top:10%;width:4px;height:4px;animation-delay:-3s;}
+  .ambient-dot--4{left:49%;top:84%;animation-delay:-7s;}
+  .ambient-dot--5{right:5%;top:17%;width:4px;height:4px;animation-delay:-2s;}
+  .ambient-dot--6{right:6%;top:76%;animation-delay:-6s;}
+  .ambient-dot--7{left:29%;top:6%;width:3px;height:3px;animation-delay:-4s;}
+  .ambient-dot--8{right:29%;top:90%;width:3px;height:3px;animation-delay:-8s;}
+  .ambient-dot--9{left:39%;top:22%;width:3px;height:3px;animation-delay:-2.5s;}
+  .ambient-dot--10{right:40%;top:69%;width:4px;height:4px;animation-delay:-6.5s;}
+  .ambient-dot--11{left:15%;top:91%;width:3px;height:3px;animation-delay:-3.5s;}
+  .ambient-dot--12{right:14%;top:6%;width:3px;height:3px;animation-delay:-7.5s;}
 
   .ambient-ring{
     position:absolute;
@@ -277,6 +353,18 @@
   .ambient-ring--1{left:2.5%;top:44%;animation-delay:-1s;}
   .ambient-ring--2{right:2.5%;top:46%;animation-delay:-4s;}
 
+  .ambient-streak{
+    position:absolute;
+    width:72px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(143,193,242,.34),transparent);
+    opacity:.2;
+    animation:ambientStreak 8s ease-in-out infinite;
+  }
+  .ambient-streak--1{left:38%;top:17%;animation-delay:-1s;}
+  .ambient-streak--2{right:38%;bottom:13%;animation-delay:-4.5s;}
+  .ambient-streak--3{left:47%;top:57%;width:48px;animation-delay:-6s;}
+
   @keyframes ambientFloat{
     0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.28;}
     50%{transform:translate3d(0,-14px,0) scale(1.15);opacity:.72;}
@@ -285,16 +373,24 @@
     0%,100%{transform:scale(.8);opacity:.12;}
     50%{transform:scale(1.2);opacity:.34;}
   }
+  @keyframes ambientStreak{
+    0%,100%{transform:translateX(-18px);opacity:.08;}
+    50%{transform:translateX(20px);opacity:.38;}
+  }
   .hero__content{position:relative;z-index:2;text-align:center;}
   .hero__logo{
     width:min(560px,86vw);
     margin:0 auto 30px;
     filter:drop-shadow(0 0 60px rgba(72,132,197,0.35));
-    animation:heroLogoIn 1.1s var(--ease) both;
+    animation:heroLogoIn 1.1s var(--ease) both, heroLogoGlow 5.5s 1.1s ease-in-out infinite;
   }
   @keyframes heroLogoIn{
     from{opacity:0;transform:translateY(18px) scale(.97);}
     to{opacity:1;transform:translateY(0) scale(1);}
+  }
+  @keyframes heroLogoGlow{
+    0%,100%{filter:drop-shadow(0 0 42px rgba(72,132,197,0.24));}
+    50%{filter:drop-shadow(0 0 72px rgba(72,132,197,0.48));}
   }
   .hero__eyebrow{
     font-family:var(--font-mono);
@@ -585,8 +681,7 @@
     display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
   }
   .footer__brand{display:flex;align-items:center;gap:12px;}
-  .footer__brand img{height:26px;width:auto;}
-  .footer__brand span{font-family:var(--font-mono);font-size:11px;color:var(--muted-2);}
+  .footer__brand img{height:48px;width:auto;}
   .footer__links{display:flex;gap:22px;flex-wrap:wrap;}
   .footer__links a{
     font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:color .25s;
@@ -600,6 +695,7 @@
 
   @media (max-width:600px){
     .footer__inner{flex-direction:column;align-items:flex-start;}
+    .footer__brand img{height:42px;}
   }
 
   /* ============================================================
@@ -744,8 +840,16 @@
 <section class="hero" id="inicio">
   <div class="hero__field" aria-hidden="true">
     <svg class="hero__sports-silhouettes hero__layer" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="pitchScanGradient" x1="0" x2="1">
+          <stop offset="0%" stop-color="#8FC1F2" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#8FC1F2" stop-opacity=".72"/>
+          <stop offset="100%" stop-color="#8FC1F2" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
       <!-- Silueta de cancha -->
-      <g>
+      <g class="pitch-group">
         <rect class="pitch-line" x="90" y="205" width="535" height="305" rx="18"/>
         <line class="pitch-line" x1="357.5" y1="205" x2="357.5" y2="510"/>
         <circle class="pitch-line" cx="357.5" cy="357.5" r="55"/>
@@ -756,10 +860,17 @@
         <rect class="pitch-line" x="591" y="309" width="34" height="97" rx="4"/>
         <path class="pitch-line" d="M178 313 A54 54 0 0 1 178 402"/>
         <path class="pitch-line" d="M537 313 A54 54 0 0 0 537 402"/>
+        <rect class="pitch-scan" x="74" y="205" width="78" height="305" rx="18"/>
+        <circle class="pitch-ball" cx="132" cy="438" r="5"/>
       </g>
 
       <!-- Silueta superior de carro de Fórmula 1 -->
-      <g transform="translate(838 178)">
+      <g class="f1-car-group" transform="translate(838 178)">
+        <!-- líneas de velocidad discretas -->
+        <path class="f1-speedline" d="M8 104 H86"/>
+        <path class="f1-speedline" d="M0 136 H70"/>
+        <path class="f1-speedline" d="M18 168 H92"/>
+
         <!-- alerón trasero -->
         <rect class="f1-body" x="83" y="20" width="226" height="28" rx="7"/>
         <rect class="f1-detail" x="111" y="48" width="170" height="18" rx="7"/>
@@ -803,6 +914,7 @@
         <path class="f1-body" d="M184 407 L168 472 L224 472 L208 407 Z"/>
         <rect class="f1-body" x="72" y="463" width="248" height="26" rx="7"/>
         <path class="f1-detail" d="M103 452 L103 489 M289 452 L289 489"/>
+        <circle class="f1-light" cx="196" cy="58" r="4.2"/>
       </g>
     </svg>
     <div class="hero__ambient">
@@ -814,8 +926,15 @@
       <span class="ambient-dot ambient-dot--6"></span>
       <span class="ambient-dot ambient-dot--7"></span>
       <span class="ambient-dot ambient-dot--8"></span>
+      <span class="ambient-dot ambient-dot--9"></span>
+      <span class="ambient-dot ambient-dot--10"></span>
+      <span class="ambient-dot ambient-dot--11"></span>
+      <span class="ambient-dot ambient-dot--12"></span>
       <span class="ambient-ring ambient-ring--1"></span>
       <span class="ambient-ring ambient-ring--2"></span>
+      <span class="ambient-streak ambient-streak--1"></span>
+      <span class="ambient-streak ambient-streak--2"></span>
+      <span class="ambient-streak ambient-streak--3"></span>
     </div>
   </div>
 
@@ -1161,6 +1280,47 @@
       toggle.setAttribute('aria-expanded','false');
     });
   });
+
+
+  /* Internal anchors: land where each section's visible content begins */
+  function getSectionTop(target){
+    if(!target || target.id === 'inicio'){ return 0; }
+    var styles = window.getComputedStyle(target);
+    var paddingTop = parseFloat(styles.paddingTop) || 0;
+    var navOffset = 68;
+    return Math.max(0, target.getBoundingClientRect().top + window.scrollY + paddingTop - navOffset);
+  }
+
+  function scrollToHash(hash, instant){
+    if(!hash || hash === '#'){ return; }
+    var target = document.querySelector(hash);
+    if(!target){ return; }
+    window.scrollTo({
+      top:getSectionTop(target),
+      behavior:(instant || reduceMotion) ? 'auto' : 'smooth'
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(event){
+      var hash = anchor.getAttribute('href');
+      if(!hash || hash === '#'){ return; }
+      var target = document.querySelector(hash);
+      if(!target){ return; }
+      event.preventDefault();
+      scrollToHash(hash, false);
+      if(window.history && history.replaceState){
+        history.replaceState(null, '', hash);
+      }
+    });
+  });
+
+  /* Correct direct URLs such as /#programa after the page loads */
+  if(window.location.hash){
+    window.setTimeout(function(){
+      scrollToHash(window.location.hash, true);
+    }, 80);
+  }
 
   /* Active link on scroll (IntersectionObserver) */
   var sections = document.querySelectorAll('section[id]');
